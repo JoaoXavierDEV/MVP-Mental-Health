@@ -1,0 +1,15 @@
+Flask
+Flask-Cors
+flask-openapi3
+Flask-SQLAlchemy
+nose2
+pydantic<2
+SQLAlchemy
+SQLAlchemy-Utils
+typing_extensions
+scikit-learn==1.5.1
+pandas
+numpy
+pytest
+jupyter
+matplotlib
