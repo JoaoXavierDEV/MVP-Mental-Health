@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health - Predicao de Tratamento</title>
+    <link rel="stylesheet" href="/front/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Saude Mental no Trabalho</h1>
+        <p>Predicao de necessidade de tratamento de saude mental</p>
+    </header>
+
+    <main>
+        <!-- Formulario -->
+        <section class="form-section">
+            <h2>Novo Registro</h2>
+            <form id="pacienteForm">
+                <!-- Identificacao -->
+                <fieldset>
+                    <legend>Identificacao</legend>
+                    <div class="form-group">
+                        <label for="name">Nome:</label>
+                        <input type="text" id="name" name="name" required placeholder="Nome completo">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="age">Idade:</label>
+                            <input type="number" id="age" name="age" min="16" max="99" required value="30">
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Genero:</label>
+                            <select id="gender" name="gender" required>
+                                <option value="Male">Masculino</option>
+                                <option value="Female">Feminino</option>
+                                <option value="Other">Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="self_employed">Autonomo?</label>
+                            <select id="self_employed" name="self_employed">
+                                <option value="No">Nao</option>
+                                <option value="Yes">Sim</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Historico -->
+                <fieldset>
+                    <legend>Historico e Trabalho</legend>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="family_history">Historico familiar?</label>
+                            <select id="family_history" name="family_history">
+                                <option value="No">Nao</option>
+                                <option value="Yes">Sim</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="work_interfere">Interfere no trabalho?</label>
+                            <select id="work_interfere" name="work_interfere">
+                                <option value="Never">Nunca</option>
+                                <option value="Rarely">Raramente</option>
+                                <option value="Sometimes" selected>As vezes</option>
+                                <option value="Often">Frequentemente</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="no_employees">Numero de funcionarios:</label>
+                            <select id="no_employees" name="no_employees">
+                                <option value="1-5">1-5</option>
+                                <option value="6-25" selected>6-25</option>
+                                <option value="26-100">26-100</option>
+                                <option value="100-500">100-500</option>
+                                <option value="500-1000">500-1000</option>
+                                <option value="More than 1000">Mais de 1000</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="remote_work">Trabalho remoto?</label>
+                            <select id="remote_work" name="remote_work">
+                                <option value="No">Nao</option>
+                                <option value="Yes">Sim</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tech_company">Empresa de tecnologia?</label>
+                            <select id="tech_company" name="tech_company">
+                                <option value="No">Nao</option>
+                                <option value="Yes" selected>Sim</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Beneficios do empregador -->
+                <fieldset>
+                    <legend>Beneficios do Empregador</legend>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="benefits">Beneficios de saude mental?</label>
+                            <select id="benefits" name="benefits">
+                                <option value="Yes">Sim</option>
+                                <option value="No">Nao</option>
+                                <option value="Don't know" selected>Nao sei</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="care_options">Opcoes de cuidado?</label>
+                            <select id="care_options" name="care_options">
+                                <option value="Yes">Sim</option>
+                                <option value="No">Nao</option>
+                                <option value="Not sure" selected>Nao tenho certeza</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="wellness_program">Programa de bem-estar?</label>
+                            <select id="wellness_program" name="wellness_program">
+                                <option value="Yes">Sim</option>
+                                <option value="No" selected>Nao</option>
+                                <option value="Don't know">Nao sei</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="seek_help">Recursos para buscar ajuda?</label>
+                            <select id="seek_help" name="seek_help">
+                                <option value="Yes">Sim</option>
+                                <option value="No">Nao</option>
+                                <option value="Don't know" selected>Nao sei</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="anonymity">Anonimato protegido?</label>
+                            <select id="anonymity" name="anonymity">
+                                <option value="Yes">Sim</option>
+                                <option value="No">Nao</option>
+                                <option value="Don't know" selected>Nao sei</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="leave">Facilidade para licenca?</label>
+                            <select id="leave" name="leave">
+                                <option value="Very easy">Muito facil</option>
+                                <option value="Somewhat easy">Relativamente facil</option>
+                                <option value="Don't know" selected>Nao sei</option>
+                                <option value="Somewhat difficult">Relativamente dificil</option>
+                                <option value="Very difficult">Muito dificil</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Percepcoes -->
+                <fieldset>
+                    <legend>Percepcoes e Abertura</legend>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="mental_health_consequence">Consequencias (saude mental)?</label>
+                            <select id="mental_health_consequence" name="mental_health_consequence">
+                                <option value="No" selected>Nao</option>
+                                <option value="Yes">Sim</option>
+                                <option value="Maybe">Talvez</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="phys_health_consequence">Consequencias (saude fisica)?</label>
+                            <select id="phys_health_consequence" name="phys_health_consequence">
+                                <option value="No" selected>Nao</option>
+                                <option value="Yes">Sim</option>
+                                <option value="Maybe">Talvez</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="coworkers">Discutiria com colegas?</label>
+                            <select id="coworkers" name="coworkers">
+                                <option value="Yes">Sim</option>
+                                <option value="No">Nao</option>
+                                <option value="Some of them" selected>Alguns deles</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="supervisor">Discutiria com supervisor?</label>
+                            <select id="supervisor" name="supervisor">
+                                <option value="Yes" selected>Sim</option>
+                                <option value="No">Nao</option>
+                                <option value="Some of them">Alguns deles</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="mental_health_interview">Mencionaria em entrevista (mental)?</label>
+                            <select id="mental_health_interview" name="mental_health_interview">
+                                <option value="Yes">Sim</option>
+                                <option value="No" selected>Nao</option>
+                                <option value="Maybe">Talvez</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="phys_health_interview">Mencionaria em entrevista (fisica)?</label>
+                            <select id="phys_health_interview" name="phys_health_interview">
+                                <option value="Yes">Sim</option>
+                                <option value="No">Nao</option>
+                                <option value="Maybe" selected>Talvez</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="mental_vs_physical">Saude mental = fisica?</label>
+                            <select id="mental_vs_physical" name="mental_vs_physical">
+                                <option value="Yes" selected>Sim</option>
+                                <option value="No">Nao</option>
+                                <option value="Don't know">Nao sei</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="obs_consequence">Observou consequencias?</label>
+                            <select id="obs_consequence" name="obs_consequence">
+                                <option value="No" selected>Nao</option>
+                                <option value="Yes">Sim</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <button type="submit" id="submitBtn">Realizar Predicao</button>
+            </form>
+
+            <!-- Resultado -->
+            <div id="resultado" class="resultado hidden">
+                <h3>Resultado da Predicao</h3>
+                <p id="resultadoTexto"></p>
+            </div>
+        </section>
+
+        <!-- Lista de pacientes -->
+        <section class="list-section">
+            <h2>Registros Cadastrados</h2>
+            <table id="pacientesTable">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Idade</th>
+                        <th>Genero</th>
+                        <th>Hist. Familiar</th>
+                        <th>Interfere Trab.</th>
+                        <th>Predicao</th>
+                        <th>Acao</th>
+                    </tr>
+                </thead>
+                <tbody id="pacientesBody">
+                </tbody>
+            </table>
+            <p id="emptyMsg" class="empty-msg">Nenhum registro cadastrado.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>MVP - Qualidade de Software, Seguranca e Sistemas Inteligentes - PUC-Rio</p>
+    </footer>
+
+    <script src="/front/scripts.js"></script>
+</body>
+</html>
