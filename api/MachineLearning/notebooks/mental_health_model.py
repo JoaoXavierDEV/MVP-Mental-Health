@@ -3,7 +3,8 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
 from sklearn.pipeline import Pipeline
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import (accuracy_score, precision_score, recall_score,
+                             f1_score, classification_report)
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.naive_bayes import GaussianNB
@@ -133,35 +134,50 @@ for name, config in models.items():
     grid.fit(X_train, y_train)
 
     y_pred = grid.predict(X_test)
-    test_accuracy = accuracy_score(y_test, y_pred)
-
     cv_scores = cross_val_score(grid.best_estimator_, X_train, y_train, cv=5)
 
+    acc  = accuracy_score(y_test, y_pred)
+    prec = precision_score(y_test, y_pred, average="weighted")
+    rec  = recall_score(y_test, y_pred, average="weighted")
+    f1   = f1_score(y_test, y_pred, average="weighted")
+
     results[name] = {
-        "best_params": grid.best_params_,
-        "cv_mean": cv_scores.mean(),
-        "cv_std": cv_scores.std(),
-        "test_accuracy": test_accuracy
+        "best_params":    grid.best_params_,
+        "cv_mean":        cv_scores.mean(),
+        "cv_std":         cv_scores.std(),
+        "test_accuracy":  acc,
+        "test_precision": prec,
+        "test_recall":    rec,
+        "test_f1":        f1,
     }
 
-    print(f"  Melhores parametros: {grid.best_params_}")
-    print(f"  Acuracia CV (treino): {cv_scores.mean():.4f} (+/- {cv_scores.std():.4f})")
-    print(f"  Acuracia (teste): {test_accuracy:.4f}")
+    print(f"  Melhores parametros : {grid.best_params_}")
+    print(f"  CV Acuracia         : {cv_scores.mean():.4f} (+/- {cv_scores.std():.4f})")
+    print()
+    print(classification_report(y_test, y_pred, target_names=target_encoder.classes_))
 
-    if test_accuracy > best_score:
-        best_score = test_accuracy
+    if acc > best_score:
+        best_score = acc
         best_model_name = name
         best_model = grid.best_estimator_
 
 # --- Resumo comparativo ---
-print("\n" + "=" * 60)
+print("=" * 60)
 print("Resumo comparativo")
 print("=" * 60)
+header = f"  {'Modelo':<14} {'Acuracia':>9} {'Precisao':>9} {'Recall':>9} {'F1':>9} {'CV Media':>9}"
+print(header)
+print("  " + "-" * (len(header) - 2))
 for name, res in results.items():
     marker = " << MELHOR" if name == best_model_name else ""
-    print(f"  {name}: teste={res['test_accuracy']:.4f} | CV={res['cv_mean']:.4f}{marker}")
+    print(
+        f"  {name:<14} {res['test_accuracy']:>9.4f} {res['test_precision']:>9.4f}"
+        f" {res['test_recall']:>9.4f} {res['test_f1']:>9.4f}"
+        f" {res['cv_mean']:>9.4f}{marker}"
+    )
 
-print(f"\nMelhor modelo: {best_model_name} (acuracia={best_score:.4f})")
+print()
+print(f"Melhor modelo: {best_model_name} (acuracia={best_score:.4f})")
 
 # --- Exportacao do modelo ---
 script_dir = os.path.dirname(os.path.abspath(__file__))
