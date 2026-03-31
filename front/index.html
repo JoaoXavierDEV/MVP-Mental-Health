@@ -3,177 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mental Health - Predicao de Tratamento</title>
+    <title>Saúde Mental no Trabalho — Predição</title>
     <link rel="stylesheet" href="/front/styles.css">
 </head>
 <body>
     <header>
-        <h1>Saude Mental no Trabalho</h1>
-        <p>Predicao de necessidade de tratamento de saude mental</p>
+        <h1>Saúde Mental no Ambiente de Trabalho</h1>
+        <p>Predição de necessidade de tratamento de saúde mental em profissionais de tecnologia</p>
     </header>
 
     <main>
-        <!-- Formulario -->
+        <!-- Formulário -->
         <section class="form-section">
             <h2>Novo Registro</h2>
+            <p class="form-intro">
+                Preencha as informações abaixo. O modelo de <em>machine learning</em> analisará o perfil
+                e indicará se a pessoa pode se beneficiar de tratamento de saúde mental.
+            </p>
+
             <form id="pacienteForm">
-                <!-- Identificacao -->
+
+                <!-- Identificação -->
                 <fieldset>
-                    <legend>Identificacao</legend>
+                    <legend>Identificação</legend>
                     <div class="form-group">
-                        <label for="name">Nome:</label>
-                        <input type="text" id="name" name="name" required placeholder="Nome completo">
+                        <label for="name">Nome completo <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required placeholder="Ex.: João Silva">
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="age">Idade:</label>
+                            <label for="age">Idade <span class="required">*</span></label>
                             <input type="number" id="age" name="age" min="16" max="99" required value="30">
                         </div>
                         <div class="form-group">
-                            <label for="gender">Genero:</label>
+                            <label for="gender">Gênero <span class="required">*</span></label>
                             <select id="gender" name="gender" required>
                                 <option value="Male">Masculino</option>
                                 <option value="Female">Feminino</option>
-                                <option value="Other">Outro</option>
+                                <option value="Other">Outro / Não-binário</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="self_employed">Autonomo?</label>
+                            <label for="self_employed">É autônomo(a)?
+                                <span class="tooltip" title="Trabalha por conta própria, sem vínculo empregatício formal">ⓘ</span>
+                            </label>
                             <select id="self_employed" name="self_employed">
-                                <option value="No">Nao</option>
+                                <option value="No">Não</option>
                                 <option value="Yes">Sim</option>
                             </select>
                         </div>
                     </div>
                 </fieldset>
 
-                <!-- Historico -->
+                <!-- Histórico e Perfil Profissional -->
                 <fieldset>
-                    <legend>Historico e Trabalho</legend>
+                    <legend>Histórico e Perfil Profissional</legend>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="family_history">Historico familiar?</label>
+                            <label for="family_history">Histórico familiar de saúde mental?
+                                <span class="tooltip" title="Algum familiar foi diagnosticado ou tratou condição de saúde mental">ⓘ</span>
+                            </label>
                             <select id="family_history" name="family_history">
-                                <option value="No">Nao</option>
+                                <option value="No">Não</option>
                                 <option value="Yes">Sim</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="work_interfere">Interfere no trabalho?</label>
+                            <label for="work_interfere">Com que frequência a saúde mental interfere no trabalho?
+                                <span class="tooltip" title="Considera condições de saúde mental atuais ou anteriores">ⓘ</span>
+                            </label>
                             <select id="work_interfere" name="work_interfere">
                                 <option value="Never">Nunca</option>
                                 <option value="Rarely">Raramente</option>
-                                <option value="Sometimes" selected>As vezes</option>
-                                <option value="Often">Frequentemente</option>
+                                <option value="Sometimes" selected>Às vezes</option>
+                                <option value="Often">Com frequência</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="no_employees">Numero de funcionarios:</label>
+                            <label for="no_employees">Quantos funcionários tem a empresa?</label>
                             <select id="no_employees" name="no_employees">
-                                <option value="1-5">1-5</option>
-                                <option value="6-25" selected>6-25</option>
-                                <option value="26-100">26-100</option>
-                                <option value="100-500">100-500</option>
-                                <option value="500-1000">500-1000</option>
-                                <option value="More than 1000">Mais de 1000</option>
+                                <option value="1-5">1 a 5</option>
+                                <option value="6-25" selected>6 a 25</option>
+                                <option value="26-100">26 a 100</option>
+                                <option value="100-500">100 a 500</option>
+                                <option value="500-1000">500 a 1.000</option>
+                                <option value="More than 1000">Mais de 1.000</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="remote_work">Trabalho remoto?</label>
+                            <label for="remote_work">Trabalha remotamente?
+                                <span class="tooltip" title="Ao menos 50% do tempo em home office">ⓘ</span>
+                            </label>
                             <select id="remote_work" name="remote_work">
-                                <option value="No">Nao</option>
+                                <option value="No">Não</option>
                                 <option value="Yes">Sim</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="tech_company">Empresa de tecnologia?</label>
+                            <label for="tech_company">Trabalha em empresa de tecnologia?</label>
                             <select id="tech_company" name="tech_company">
-                                <option value="No">Nao</option>
+                                <option value="No">Não</option>
                                 <option value="Yes" selected>Sim</option>
                             </select>
                         </div>
                     </div>
                 </fieldset>
 
-                <!-- Beneficios do empregador -->
+                <!-- Benefícios e Suporte do Empregador -->
                 <fieldset>
-                    <legend>Beneficios do Empregador</legend>
+                    <legend>Benefícios e Suporte do Empregador</legend>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="benefits">Beneficios de saude mental?</label>
+                            <label for="benefits">O empregador oferece benefícios de saúde mental?
+                                <span class="tooltip" title="Plano de saúde com cobertura psicológica/psiquiátrica">ⓘ</span>
+                            </label>
                             <select id="benefits" name="benefits">
                                 <option value="Yes">Sim</option>
-                                <option value="No">Nao</option>
-                                <option value="Don't know" selected>Nao sei</option>
+                                <option value="No">Não</option>
+                                <option value="Don't know" selected>Não sei</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="care_options">Opcoes de cuidado?</label>
+                            <label for="care_options">Você conhece as opções de cuidado oferecidas?
+                                <span class="tooltip" title="Conhece os recursos disponíveis para saúde mental no trabalho">ⓘ</span>
+                            </label>
                             <select id="care_options" name="care_options">
                                 <option value="Yes">Sim</option>
-                                <option value="No">Nao</option>
-                                <option value="Not sure" selected>Nao tenho certeza</option>
+                                <option value="No">Não</option>
+                                <option value="Not sure" selected>Não tenho certeza</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="wellness_program">Programa de bem-estar?</label>
+                            <label for="wellness_program">O empregador tem programa de bem-estar mental?
+                                <span class="tooltip" title="Programas formais como EAP (Employee Assistance Program)">ⓘ</span>
+                            </label>
                             <select id="wellness_program" name="wellness_program">
                                 <option value="Yes">Sim</option>
-                                <option value="No" selected>Nao</option>
-                                <option value="Don't know">Nao sei</option>
+                                <option value="No" selected>Não</option>
+                                <option value="Don't know">Não sei</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="seek_help">Recursos para buscar ajuda?</label>
+                            <label for="seek_help">O empregador disponibiliza recursos para buscar ajuda?
+                                <span class="tooltip" title="Ex.: indicação de profissionais, canais de apoio, materiais informativos">ⓘ</span>
+                            </label>
                             <select id="seek_help" name="seek_help">
                                 <option value="Yes">Sim</option>
-                                <option value="No">Nao</option>
-                                <option value="Don't know" selected>Nao sei</option>
+                                <option value="No">Não</option>
+                                <option value="Don't know" selected>Não sei</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="anonymity">Anonimato protegido?</label>
+                            <label for="anonymity">O anonimato é protegido ao buscar tratamento?
+                                <span class="tooltip" title="O empregador garante sigilo ao usar benefícios de saúde mental">ⓘ</span>
+                            </label>
                             <select id="anonymity" name="anonymity">
                                 <option value="Yes">Sim</option>
-                                <option value="No">Nao</option>
-                                <option value="Don't know" selected>Nao sei</option>
+                                <option value="No">Não</option>
+                                <option value="Don't know" selected>Não sei</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="leave">Facilidade para licenca?</label>
+                            <label for="leave">Quão fácil é tirar licença por saúde mental?
+                                <span class="tooltip" title="Facilidade de obter afastamento para cuidar da saúde mental">ⓘ</span>
+                            </label>
                             <select id="leave" name="leave">
-                                <option value="Very easy">Muito facil</option>
-                                <option value="Somewhat easy">Relativamente facil</option>
-                                <option value="Don't know" selected>Nao sei</option>
-                                <option value="Somewhat difficult">Relativamente dificil</option>
-                                <option value="Very difficult">Muito dificil</option>
+                                <option value="Very easy">Muito fácil</option>
+                                <option value="Somewhat easy">Relativamente fácil</option>
+                                <option value="Don't know" selected>Não sei</option>
+                                <option value="Somewhat difficult">Relativamente difícil</option>
+                                <option value="Very difficult">Muito difícil</option>
                             </select>
                         </div>
                     </div>
                 </fieldset>
 
-                <!-- Percepcoes -->
+                <!-- Percepções e Abertura -->
                 <fieldset>
-                    <legend>Percepcoes e Abertura</legend>
+                    <legend>Percepções e Abertura no Ambiente de Trabalho</legend>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="mental_health_consequence">Consequencias (saude mental)?</label>
+                            <label for="mental_health_consequence">Discutir saúde mental teria consequências negativas no trabalho?
+                                <span class="tooltip" title="Há risco de impacto na carreira ao revelar questões de saúde mental ao empregador">ⓘ</span>
+                            </label>
                             <select id="mental_health_consequence" name="mental_health_consequence">
-                                <option value="No" selected>Nao</option>
+                                <option value="No" selected>Não</option>
                                 <option value="Yes">Sim</option>
                                 <option value="Maybe">Talvez</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="phys_health_consequence">Consequencias (saude fisica)?</label>
+                            <label for="phys_health_consequence">Discutir saúde física teria consequências negativas no trabalho?
+                                <span class="tooltip" title="Há risco de impacto na carreira ao revelar questões de saúde física ao empregador">ⓘ</span>
+                            </label>
                             <select id="phys_health_consequence" name="phys_health_consequence">
-                                <option value="No" selected>Nao</option>
+                                <option value="No" selected>Não</option>
                                 <option value="Yes">Sim</option>
                                 <option value="Maybe">Talvez</option>
                             </select>
@@ -181,70 +211,77 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="coworkers">Discutiria com colegas?</label>
+                            <label for="coworkers">Você se sentiria à vontade para discutir saúde mental com colegas?</label>
                             <select id="coworkers" name="coworkers">
-                                <option value="Yes">Sim</option>
-                                <option value="No">Nao</option>
-                                <option value="Some of them" selected>Alguns deles</option>
+                                <option value="Yes">Sim, com qualquer colega</option>
+                                <option value="No">Não</option>
+                                <option value="Some of them" selected>Sim, com alguns colegas</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="supervisor">Discutiria com supervisor?</label>
+                            <label for="supervisor">Você se sentiria à vontade para discutir saúde mental com seu supervisor?</label>
                             <select id="supervisor" name="supervisor">
                                 <option value="Yes" selected>Sim</option>
-                                <option value="No">Nao</option>
-                                <option value="Some of them">Alguns deles</option>
+                                <option value="No">Não</option>
+                                <option value="Some of them">Com alguns supervisores</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="mental_health_interview">Mencionaria em entrevista (mental)?</label>
+                            <label for="mental_health_interview">Você mencionaria um problema de saúde mental em uma entrevista de emprego?
+                                <span class="tooltip" title="Você revelaria a um entrevistador potencial algum histórico de saúde mental">ⓘ</span>
+                            </label>
                             <select id="mental_health_interview" name="mental_health_interview">
                                 <option value="Yes">Sim</option>
-                                <option value="No" selected>Nao</option>
+                                <option value="No" selected>Não</option>
                                 <option value="Maybe">Talvez</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="phys_health_interview">Mencionaria em entrevista (fisica)?</label>
+                            <label for="phys_health_interview">Você mencionaria um problema de saúde física em uma entrevista de emprego?
+                                <span class="tooltip" title="Você revelaria a um entrevistador potencial algum histórico de saúde física">ⓘ</span>
+                            </label>
                             <select id="phys_health_interview" name="phys_health_interview">
                                 <option value="Yes">Sim</option>
-                                <option value="No">Nao</option>
+                                <option value="No">Não</option>
                                 <option value="Maybe" selected>Talvez</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="mental_vs_physical">Saude mental = fisica?</label>
+                            <label for="mental_vs_physical">Seu empregador trata saúde mental com a mesma seriedade que saúde física?
+                                <span class="tooltip" title="A empresa demonstra igualmente preocupação com bem-estar mental e físico">ⓘ</span>
+                            </label>
                             <select id="mental_vs_physical" name="mental_vs_physical">
                                 <option value="Yes" selected>Sim</option>
-                                <option value="No">Nao</option>
-                                <option value="Don't know">Nao sei</option>
+                                <option value="No">Não</option>
+                                <option value="Don't know">Não sei</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="obs_consequence">Observou consequencias?</label>
+                            <label for="obs_consequence">Você observou ou vivenciou consequências negativas por revelar problemas de saúde mental no trabalho?</label>
                             <select id="obs_consequence" name="obs_consequence">
-                                <option value="No" selected>Nao</option>
+                                <option value="No" selected>Não</option>
                                 <option value="Yes">Sim</option>
                             </select>
                         </div>
                     </div>
                 </fieldset>
 
-                <button type="submit" id="submitBtn">Realizar Predicao</button>
+                <button type="submit" id="submitBtn">Realizar Predição</button>
             </form>
 
             <!-- Resultado -->
             <div id="resultado" class="resultado hidden">
-                <h3>Resultado da Predicao</h3>
+                <h3>Resultado da Predição</h3>
                 <p id="resultadoTexto"></p>
+                <p class="resultado-aviso">⚠️ Esta predição é gerada por um modelo estatístico e não substitui avaliação profissional de saúde.</p>
             </div>
         </section>
 
-        <!-- Lista de pacientes -->
+        <!-- Lista de registros -->
         <section class="list-section">
             <h2>Registros Cadastrados</h2>
             <table id="pacientesTable">
@@ -252,11 +289,11 @@
                     <tr>
                         <th>Nome</th>
                         <th>Idade</th>
-                        <th>Genero</th>
+                        <th>Gênero</th>
                         <th>Hist. Familiar</th>
-                        <th>Interfere Trab.</th>
-                        <th>Predicao</th>
-                        <th>Acao</th>
+                        <th>Interferência no Trab.</th>
+                        <th>Predição</th>
+                        <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody id="pacientesBody">
@@ -267,7 +304,7 @@
     </main>
 
     <footer>
-        <p>MVP - Qualidade de Software, Seguranca e Sistemas Inteligentes - PUC-Rio</p>
+        <p>MVP — Qualidade de Software, Segurança e Sistemas Inteligentes — PUC-Rio</p>
     </footer>
 
     <script src="/front/scripts.js"></script>
