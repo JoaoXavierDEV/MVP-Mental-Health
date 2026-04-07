@@ -1,21 +1,21 @@
-# Saude Mental no Ambiente de Trabalho — MVP
+# Saúde Mental no Ambiente de Trabalho — MVP
 
-Aplicacao web para predicao de necessidade de tratamento de saude mental em profissionais de tecnologia, utilizando um modelo de Machine Learning treinado com dados reais.
+Aplicação web para predição de necessidade de tratamento de saúde mental em profissionais de tecnologia, utilizando um modelo de Machine Learning treinado com dados reais.
 
 ## Sobre o Projeto
 
-Este MVP foi desenvolvido como parte da disciplina **Qualidade de Software, Seguranca e Sistemas Inteligentes** da **PUC-Rio**. A aplicacao permite cadastrar perfis de profissionais e, com base em fatores como historico familiar, ambiente de trabalho e percepcoes sobre saude mental, prever se a pessoa pode se beneficiar de tratamento.
+Este MVP foi desenvolvido como parte da disciplina **Qualidade de Software, Segurança e Sistemas Inteligentes** da **PUC-Rio**. A aplicação permite cadastrar perfis de profissionais e, com base em fatores como histórico familiar, ambiente de trabalho e percepções sobre saúde mental, prever se a pessoa pode se beneficiar de tratamento.
 
 ## Arquitetura
 
 ```
 mvp/
 ├── api/                        # Back-end (Flask)
-│   ├── app.py                  # Rotas e logica da API
-│   ├── logger.py               # Configuracao de logging
-│   ├── requirements.txt        # Dependencias Python
+│   ├── app.py                  # Rotas e lógica da API
+│   ├── logger.py               # Configuração de logging
+│   ├── requirements.txt        # Dependências Python
 │   ├── model/                  # Modelos SQLAlchemy e pipeline de ML
-│   ├── schemas/                # Schemas de validacao (Pydantic)
+│   ├── schemas/                # Schemas de validação (Pydantic)
 │   ├── MachineLearning/        # Notebooks, pipelines e modelos treinados
 │   └── test_modelos.py         # Testes do modelo de ML
 ├── database/                   # Banco de dados SQLite (usuarios.sqlite3)
@@ -24,7 +24,7 @@ mvp/
 │   ├── styles.css
 │   ├── scripts.js
 │   └── img/
-└── log/                        # Logs da aplicacao
+└── log/                        # Logs da aplicação
 ```
 
 ## Tecnologias Utilizadas
@@ -36,13 +36,13 @@ mvp/
 
 ## Como Executar
 
-### Pre-requisitos
+### Pré-requisitos
 
 - Python 3.10+
 
-### Instalacao
+### Instalação
 
-1. Clone o repositorio:
+1. Clone o repositório:
    ```bash
    git clone <url-do-repositorio>
    ```
@@ -54,37 +54,37 @@ mvp/
    .venv\Scripts\activate      # Windows
    ```
 
-3. Instale as dependencias:
+3. Instale as dependências:
    ```bash
    pip install -r api/requirements.txt
    ```
 
-### Execucao
+### Execução
 
 ```bash
 cd api
 python app.py
 ```
 
-A aplicacao estara disponivel em `http://127.0.0.1:5000`.
+A aplicação estará disponível em `http://127.0.0.1:5000`.
 
 ## Funcionalidades
 
-- **Cadastro de perfis** com informacoes demograficas, profissionais e de percepcao sobre saude mental
-- **Predicao automatica** via modelo de ML indicando se o profissional pode se beneficiar de tratamento
-- **Listagem** de todos os registros cadastrados
-- **Busca** de registro por nome
-- **Remocao** de registros
+- **Cadastro de perfis** com informações demográficas, profissionais e de percepção sobre saúde mental.
+- **Predição automática** via modelo de ML indicando se o profissional pode se beneficiar de tratamento.
+- **Listagem** de todos os registros cadastrados.
+- **Busca** de registro por nome.
+- **Remoção** de registros.
 
 ## API Endpoints
 
-| Metodo   | Rota         | Descricao                          |
-|----------|--------------|-------------------------------------|
-| `GET`    | `/`          | Interface web principal             |
-| `POST`   | `/paciente`  | Cadastra paciente e realiza predicao|
-| `GET`    | `/pacientes` | Lista todos os pacientes            |
-| `GET`    | `/paciente`  | Busca paciente por nome             |
-| `DELETE` | `/paciente`  | Remove paciente por nome            |
+| Método   | Rota         | Descrição                           |
+|----------|--------------|--------------------------------------|
+| `GET`    | `/`          | Interface web principal              |
+| `POST`   | `/paciente`  | Cadastra paciente e realiza predição |
+| `GET`    | `/pacientes` | Lista todos os pacientes             |
+| `GET`    | `/paciente`  | Busca paciente por nome              |
+| `DELETE` | `/paciente`  | Remove paciente por nome             |
 
 ## Testes
 
