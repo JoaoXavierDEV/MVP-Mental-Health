@@ -14,7 +14,7 @@ db_path = "database/"
 if not os.path.exists(db_path):
     os.makedirs(db_path)
 
-db_url = 'sqlite:///%s/pacientes.sqlite3' % db_path
+db_url = 'sqlite:///%s/usuarios.sqlite3' % db_path
 
 engine = create_engine(db_url, echo=False)
 
