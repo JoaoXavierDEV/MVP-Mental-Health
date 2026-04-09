@@ -44,7 +44,7 @@ mvp/
 
 1. Clone o repositório:
    ```bash
-   git clone <url-do-repositorio>
+   git clone https://github.com/JoaoXavierDEV/MVP-Mental-Health
    ```
 
 2. Crie e ative um ambiente virtual:
@@ -90,5 +90,10 @@ A aplicação estará disponível em `http://127.0.0.1:5000`.
 
 ```bash
 cd api
-pytest test_modelos.py
+pytest test/ -v
 ```
+
+Os testes estão organizados em `api/test/`:
+
+- **test_modelos.py** — Testes de desempenho do modelo de ML (acurácia, recall, precisão e F1-score com thresholds mínimos). Garante que a substituição do modelo não implante uma versão com desempenho inferior.
+- **test_api.py** — Testes dos endpoints da API (POST, GET, DELETE) cobrindo cenários de sucesso e erro.

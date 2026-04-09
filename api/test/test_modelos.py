@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score
 
 # --- Configuracao ---
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 PIPELINE_PATH = BASE_DIR / "MachineLearning" / "pipelines" / "pipeline.pkl"
 ENCODERS_PATH = BASE_DIR / "MachineLearning" / "models" / "encoders.pkl"
 FEATURES_PATH = BASE_DIR / "MachineLearning" / "models" / "features.pkl"
